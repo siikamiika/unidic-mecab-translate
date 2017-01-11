@@ -1,0 +1,367 @@
+# F[0]: pos1
+# F[1]: pos2
+# F[2]: pos3
+# F[3]: pos4
+# F[4]: cType
+# F[5]: cForm
+# F[6]: lForm
+# F[7]: lemma
+# F[8]: orth
+# F[9]: pron
+# F[10]: orthBase
+# F[11]: pronBase
+# F[12]: goshu
+# F[13]: iType
+# F[14]: iForm
+# F[15]: fType
+# F[16]: fForm
+#
+# L[0]: pos1
+# L[1]: pos2
+# L[2]: pos3
+# L[3]: pos4
+# L[4]: cType
+# L[5]: cForm
+# L[6]: orth
+# L[7]: orthBase
+# L[8]: goshu
+#
+# R[0]: pos1
+# R[1]: pos2
+# R[2]: pos3
+# R[3]: pos4
+# R[4]: cType
+# R[5]: cForm
+# R[6]: orth
+# R[7]: orthBase
+# R[8]: goshu
+
+UNIGRAM G01:%F[0]
+UNIGRAM G02:%F[0],%F?[1]
+UNIGRAM G03:%F[0],%F[1],%F?[2]
+UNIGRAM G04:%F[0],%F[1],%F[2],%F?[3]
+
+UNIGRAM C01:%F?[4]
+UNIGRAM C02:%F?[5]
+UNIGRAM C03:%F?[4],%F?[5]
+
+UNIGRAM GC01:%F[0],%F?[4],%F?[5]
+UNIGRAM GC02:%F[0],%F?[1],%F?[4],%F?[5]
+
+UNIGRAM T01:%t
+
+UNIGRAM GT01:%F[0],%t
+UNIGRAM GT02:%F[0],%F?[1],%t
+UNIGRAM GT03:%F[0],%F[1],%F?[2],%t
+UNIGRAM GT04:%F[0],%F[1],%F[2],%F?[3],%t
+
+UNIGRAM GCT01:%F[0],%F?[4],%F?[5],%t
+UNIGRAM GCT02:%F[0],%F?[1],%F?[4],%F?[5],%t
+
+UNIGRAM O01:%F[8]
+UNIGRAM O02:%F[10]
+UNIGRAM O03:%F[8],%F[10]
+
+UNIGRAM GO01:%F[0],%F[10]
+UNIGRAM GO02:%F[0],%F?[1],%F[10]
+UNIGRAM GO03:%F[0],%F[1],%F?[2],%F[10]
+UNIGRAM GO04:%F[0],%F[1],%F[2],%F?[3],%F[10]
+
+UNIGRAM GCO01:%F[0],%F?[4],%F?[5],%F[8]
+UNIGRAM GCO02:%F[0],%F?[1],%F?[4],%F?[5],%F[8]
+
+UNIGRAM GL01:%F[0],%F[6],%F[7]
+UNIGRAM GL02:%F[0],%F?[1],%F[6],%F[7]
+UNIGRAM GL03:%F[0],%F[1],%F?[2],%F[6],%F[7]
+UNIGRAM GL04:%F[0],%F[1],%F[2],%F?[3],%F[6],%F[7]
+
+UNIGRAM CL01:%F?[4],%F?[5],%F[6],%F[7]
+
+UNIGRAM GCL01:%F[0],%F?[4],%F?[5],%F[6],%F[7]
+UNIGRAM GCL02:%F[0],%F?[1],%F?[4],%F?[5],%F[6],%F[7]
+
+UNIGRAM LO01:%F[6],%F[7],%F[10]
+
+UNIGRAM GLO01:%F[0],%F[6],%F[7],%F[10]
+UNIGRAM GLO02:%F[0],%F?[1],%F[6],%F[7],%F[10]
+UNIGRAM GLO03:%F[0],%F[1],%F?[2],%F[6],%F[7],%F[10]
+UNIGRAM GLO04:%F[0],%F[1],%F[2],%F?[3],%F[6],%F[7],%F[10]
+
+UNIGRAM GCLO01:%F[0],%F?[4],%F?[5],%F[6],%F[7],%F[8]
+UNIGRAM GCLO02:%F[0],%F?[1],%F?[4],%F?[5],%F[6],%F[7],%F[8]
+
+UNIGRAM W01:%F[12]
+
+UNIGRAM GW01:%F[0],%F[12]
+UNIGRAM GW02:%F[0],%F?[1],%F[12]
+UNIGRAM GW03:%F[0],%F[1],%F?[2],%F[12]
+UNIGRAM GW04:%F[0],%F[1],%F[2],%F?[3],%F[12]
+
+UNIGRAM GCW01:%F[0],%F?[4],%F?[5],%F[12]
+UNIGRAM GCW02:%F[0],%F?[1],%F?[4],%F?[5],%F[12]
+
+UNIGRAM OW01:%F[10],%F[12]
+
+UNIGRAM LW01:%F[6],%F[7],%F[12]
+
+UNIGRAM GCLOW01:%F[0],%F?[4],%F?[5],%F[6],%F[7],%F[8],%F[12]
+UNIGRAM GCLOW02:%F[0],%F?[1],%F?[4],%F?[5],%F[6],%F[7],%F[8],%F[12]
+
+UNIGRAM GLOP01:%F[0],%F[6],%F[7],%F[10],%F[11]
+UNIGRAM GLOP02:%F[0],%F?[1],%F[6],%F[7],%F[10],%F[11]
+UNIGRAM GLOP03:%F[0],%F[1],%F?[2],%F[6],%F[7],%F[10],%F[11]
+UNIGRAM GLOP04:%F[0],%F[1],%F[2],%F?[3],%F[6],%F[7],%F[10],%F[11]
+
+UNIGRAM GCLOP01:%F[0],%F?[4],%F?[5],%F[6],%F[7],%F[8],%F[9]
+UNIGRAM GCLOP02:%F[0],%F?[1],%F?[4],%F?[5],%F[6],%F[7],%F[8],%F[9]
+
+UNIGRAM I01:%F?[13]
+UNIGRAM I02:%F?[14]
+UNIGRAM I03:%F?[13],%F?[14]
+
+UNIGRAM F01:%F?[15]
+UNIGRAM F02:%F?[16]
+UNIGRAM F03:%F?[15],%F?[16]
+
+BIGRAM G_G01:%L[0]/%R[0]
+BIGRAM G_G02:%L[0]/%R[0],%R?[1]
+BIGRAM G_G03:%L[0]/%R[0],%R[1],%R?[2]
+BIGRAM G_G04:%L[0]/%R[0],%R[1],%R[2],%R?[3]
+BIGRAM G_G05:%L[0],%L?[1]/%R[0]
+BIGRAM G_G06:%L[0],%L?[1]/%R[0],%R?[1]
+BIGRAM G_G07:%L[0],%L?[1]/%R[0],%R[1],%R?[2]
+BIGRAM G_G08:%L[0],%L?[1]/%R[0],%R[1],%R[2],%R?[3]
+BIGRAM G_G09:%L[0],%L[1],%L?[2]/%R[0]
+BIGRAM G_G10:%L[0],%L[1],%L?[2]/%R[0],%R?[1]
+BIGRAM G_G11:%L[0],%L[1],%L?[2]/%R[0],%R[1],%R?[2]
+BIGRAM G_G12:%L[0],%L[1],%L?[2]/%R[0],%R[1],%R[2],%R?[3]
+BIGRAM G_G13:%L[0],%L[1],%L[2],%L?[3]/%R[0]
+BIGRAM G_G14:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R?[1]
+BIGRAM G_G15:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R[1],%R?[2]
+BIGRAM G_G16:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R[1],%R[2],%R?[3]
+
+BIGRAM C_C09:%L?[4],%L?[5]/%R?[4],%R?[5]
+
+BIGRAM G_C01:%L[0]/%R?[4],%R?[5]
+BIGRAM G_C02:%L[0],%L?[1]/%R?[4],%R?[5]
+BIGRAM G_C03:%L[0],%L[1],%L?[2]/%R?[4],%R?[5]
+BIGRAM G_C04:%L[0],%L[1],%L[2],%L?[3]/%R?[4],%R?[5]
+
+BIGRAM C_G01:%L?[4],%L?[5]/%R[0]
+BIGRAM C_G02:%L?[4],%L?[5]/%R[0],%R?[1]
+BIGRAM C_G03:%L?[4],%L?[5]/%R[0],%R[1],%R?[2]
+BIGRAM C_G04:%L?[4],%L?[5]/%R[0],%R[1],%R[2],%R?[3]
+
+BIGRAM G_GC01:%L[0]/%R[0],%R?[4],%R?[5]
+BIGRAM G_GC02:%L[0]/%R[0],%R?[1],%R?[4],%R?[5]
+BIGRAM G_GC05:%L[0],%L?[1]/%R[0],%R?[4],%R?[5]
+BIGRAM G_GC06:%L[0],%L?[1]/%R[0],%R?[1],%R?[4],%R?[5]
+BIGRAM G_GC09:%L[0],%L[1],%L?[2]/%R[0],%R?[4],%R?[5]
+BIGRAM G_GC10:%L[0],%L[1],%L?[2]/%R[0],%R?[1],%R?[4],%R?[5]
+BIGRAM G_GC13:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R?[4],%R?[5]
+BIGRAM G_GC14:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R?[1],%R?[4],%R?[5]
+
+BIGRAM GC_G01:%L[0],%L?[4],%L?[5]/%R[0]
+BIGRAM GC_G02:%L[0],%L?[4],%L?[5]/%R[0],%R?[1]
+BIGRAM GC_G03:%L[0],%L?[4],%L?[5]/%R[0],%R[1],%R?[2]
+BIGRAM GC_G04:%L[0],%L?[4],%L?[5]/%R[0],%R[1],%R[2],%R?[3]
+BIGRAM GC_G05:%L[0],%L?[1],%L?[4],%L?[5]/%R[0]
+BIGRAM GC_G06:%L[0],%L?[1],%L?[4],%L?[5]/%R[0],%R?[1]
+BIGRAM GC_G07:%L[0],%L?[1],%L?[4],%L?[5]/%R[0],%R[1],%R?[2]
+BIGRAM GC_G08:%L[0],%L?[1],%L?[4],%L?[5]/%R[0],%R[1],%R[2],%R?[3]
+
+BIGRAM C_GC01:%L?[4],%L?[5]/%R[0],%R?[4],%R?[5]
+BIGRAM C_GC02:%L?[4],%L?[5]/%R[0],%R?[1],%R?[4],%R?[5]
+
+BIGRAM GC_C01:%L[0],%L?[4],%L?[5]/%R?[4],%R?[5]
+BIGRAM GC_C02:%L[0],%L?[1],%L?[4],%L?[5]/%R?[4],%R?[5]
+
+BIGRAM GC_GC01:%L[0],%L?[4],%L?[5]/%R[0],%R?[4],%R?[5]
+BIGRAM GC_GC02:%L[0],%L?[4],%L?[5]/%R[0],%R?[1],%R?[4],%R?[5]
+BIGRAM GC_GC05:%L[0],%L?[1],%L?[4],%L?[5]/%R[0],%R?[4],%R?[5]
+BIGRAM GC_GC06:%L[0],%L?[1],%L?[4],%L?[5]/%R[0],%R?[1],%R?[4],%R?[5]
+
+BIGRAM O_O05:%L?[7]/%R?[7]
+
+BIGRAM G_O01:%L[0]/%R?[7]
+BIGRAM G_O02:%L[0],%L?[1]/%R?[7]
+BIGRAM G_O03:%L[0],%L[1],%L?[2]/%R?[7]
+BIGRAM G_O04:%L[0],%L[1],%L[2],%L?[3]/%R?[7]
+
+BIGRAM GO_O01:%L[0],%L?[7]/%R?[7]
+BIGRAM GO_O02:%L[0],%L?[1],%L?[7]/%R?[7]
+BIGRAM GO_O03:%L[0],%L[1],%L?[2],%L?[7]/%R?[7]
+BIGRAM GO_O04:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R?[7]
+
+BIGRAM O_G01:%L?[7]/%R[0]
+BIGRAM O_G02:%L?[7]/%R[0],%R?[1]
+BIGRAM O_G03:%L?[7]/%R[0],%R[1],%R?[2]
+BIGRAM O_G04:%L?[7]/%R[0],%R[1],%R[2],%R?[3]
+
+BIGRAM O_GO01:%L?[7]/%R[0],%R?[7]
+BIGRAM O_GO02:%L?[7]/%R[0],%R?[1],%R?[7]
+BIGRAM O_GO03:%L?[7]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM O_GO04:%L?[7]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+
+BIGRAM C_O01:%L?[4],%L?[5]/%R?[7]
+
+BIGRAM O_C01:%L?[7]/%R?[4],%R?[5]
+
+BIGRAM O_CO01:%L?[7]/%R?[4],%R?[5],%R?[6]
+
+BIGRAM GC_O01:%L[0],%L?[4],%L?[5]/%R?[7]
+BIGRAM GC_O02:%L[0],%L?[1],%L?[4],%L?[5]/%R?[7]
+
+BIGRAM O_GC01:%L?[7]/%R[0],%R?[4],%R?[5]
+BIGRAM O_GC02:%L?[7]/%R[0],%R?[1],%R?[4],%R?[5]
+
+BIGRAM G_GO01:%L[0]/%R[0],%R?[7]
+BIGRAM G_GO02:%L[0]/%R[0],%R?[1],%R?[7]
+BIGRAM G_GO03:%L[0]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM G_GO04:%L[0]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+BIGRAM G_GO05:%L[0],%L?[1]/%R[0],%R?[7]
+BIGRAM G_GO06:%L[0],%L?[1]/%R[0],%R?[1],%R?[7]
+BIGRAM G_GO07:%L[0],%L?[1]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM G_GO08:%L[0],%L?[1]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+BIGRAM G_GO09:%L[0],%L[1],%L?[2]/%R[0],%R?[7]
+BIGRAM G_GO10:%L[0],%L[1],%L?[2]/%R[0],%R?[1],%R?[7]
+BIGRAM G_GO11:%L[0],%L[1],%L?[2]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM G_GO12:%L[0],%L[1],%L?[2]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+BIGRAM G_GO13:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R?[7]
+BIGRAM G_GO14:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R?[1],%R?[7]
+BIGRAM G_GO15:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM G_GO16:%L[0],%L[1],%L[2],%L?[3]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+
+BIGRAM GO_G01:%L[0],%L?[7]/%R[0]
+BIGRAM GO_G02:%L[0],%L?[7]/%R[0],%R?[1]
+BIGRAM GO_G03:%L[0],%L?[7]/%R[0],%R[1],%R?[2]
+BIGRAM GO_G04:%L[0],%L?[7]/%R[0],%R[1],%R[2],%R?[3]
+BIGRAM GO_G05:%L[0],%L?[1],%L?[7]/%R[0]
+BIGRAM GO_G06:%L[0],%L?[1],%L?[7]/%R[0],%R?[1]
+BIGRAM GO_G07:%L[0],%L?[1],%L?[7]/%R[0],%R[1],%R?[2]
+BIGRAM GO_G08:%L[0],%L?[1],%L?[7]/%R[0],%R[1],%R[2],%R?[3]
+BIGRAM GO_G09:%L[0],%L[1],%L?[2],%L?[7]/%R[0]
+BIGRAM GO_G10:%L[0],%L[1],%L?[2],%L?[7]/%R[0],%R?[1]
+BIGRAM GO_G11:%L[0],%L[1],%L?[2],%L?[7]/%R[0],%R[1],%R?[2]
+BIGRAM GO_G12:%L[0],%L[1],%L?[2],%L?[7]/%R[0],%R[1],%R[2],%R?[3]
+BIGRAM GO_G13:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R[0]
+BIGRAM GO_G14:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R[0],%R?[1]
+BIGRAM GO_G15:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R[0],%R[1],%R?[2]
+BIGRAM GO_G16:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R[0],%R[1],%R[2],%R?[3]
+
+BIGRAM GO_GO01:%L[0],%L?[7]/%R[0],%R?[7]
+BIGRAM GO_GO02:%L[0],%L?[7]/%R[0],%R?[1],%R?[7]
+BIGRAM GO_GO03:%L[0],%L?[7]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM GO_GO04:%L[0],%L?[7]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+BIGRAM GO_GO05:%L[0],%L?[1],%L?[7]/%R[0],%R?[7]
+BIGRAM GO_GO06:%L[0],%L?[1],%L?[7]/%R[0],%R?[1],%R?[7]
+BIGRAM GO_GO07:%L[0],%L?[1],%L?[7]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM GO_GO08:%L[0],%L?[1],%L?[7]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+BIGRAM GO_GO09:%L[0],%L[1],%L?[2],%L?[7]/%R[0],%R?[7]
+BIGRAM GO_GO10:%L[0],%L[1],%L?[2],%L?[7]/%R[0],%R?[1],%R?[7]
+BIGRAM GO_GO11:%L[0],%L[1],%L?[2],%L?[7]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM GO_GO12:%L[0],%L[1],%L?[2],%L?[7]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+BIGRAM GO_GO13:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R[0],%R?[7]
+BIGRAM GO_GO14:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R[0],%R?[1],%R?[7]
+BIGRAM GO_GO15:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM GO_GO16:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+
+BIGRAM C_CO01:%L?[4],%L?[5]/%R?[4],%R?[5],%R?[6]
+
+BIGRAM CO_C01:%L?[4],%L?[5],%L?[6]/%R?[4],%R?[5]
+
+BIGRAM CO_CO01:%L?[4],%L?[5],%L?[6]/%R?[4],%R?[5],%R?[6]
+
+BIGRAM G_CO01:%L[0]/%R?[4],%R?[5],%R?[6]
+BIGRAM G_CO02:%L[0],%L?[1]/%R?[4],%R?[5],%R?[6]
+BIGRAM G_CO03:%L[0],%L[1],%L?[2]/%R?[4],%R?[5],%R?[6]
+BIGRAM G_CO04:%L[0],%L[1],%L[2],%L?[3]/%R?[4],%R?[5],%R?[6]
+
+BIGRAM GO_C01:%L[0],%L?[7]/%R?[4],%R?[5]
+BIGRAM GO_C02:%L[0],%L?[1],%L?[7]/%R?[4],%R?[5]
+BIGRAM GO_C03:%L[0],%L[1],%L?[2],%L?[7]/%R?[4],%R?[5]
+BIGRAM GO_C04:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R?[4],%R?[5]
+
+BIGRAM GO_CO01:%L[0],%L?[7]/%R?[4],%R?[5],%R?[6]
+BIGRAM GO_CO02:%L[0],%L?[1],%L?[7]/%R?[4],%R?[5],%R?[6]
+BIGRAM GO_CO03:%L[0],%L[1],%L?[2],%L?[7]/%R?[4],%R?[5],%R?[6]
+BIGRAM GO_CO04:%L[0],%L[1],%L[2],%L?[3],%L?[7]/%R?[4],%R?[5],%R?[6]
+
+BIGRAM C_GO01:%L?[4],%L?[5]/%R[0],%R?[7]
+BIGRAM C_GO02:%L?[4],%L?[5]/%R[0],%R?[1],%R?[7]
+BIGRAM C_GO03:%L?[4],%L?[5]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM C_GO04:%L?[4],%L?[5]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+
+BIGRAM CO_G01:%L?[4],%L?[5],%L?[6]/%R[0]
+BIGRAM CO_G02:%L?[4],%L?[5],%L?[6]/%R[0],%R?[1]
+BIGRAM CO_G03:%L?[4],%L?[5],%L?[6]/%R[0],%R[1],%R?[2]
+BIGRAM CO_G04:%L?[4],%L?[5],%L?[6]/%R[0],%R[1],%R[2],%R?[3]
+
+BIGRAM CO_GO01:%L?[4],%L?[5],%L?[6]/%R[0],%R?[7]
+BIGRAM CO_GO02:%L?[4],%L?[5],%L?[6]/%R[0],%R?[1],%R?[7]
+BIGRAM CO_GO03:%L?[4],%L?[5],%L?[6]/%R[0],%R[1],%R?[2],%R?[7]
+BIGRAM CO_GO04:%L?[4],%L?[5],%L?[6]/%R[0],%R[1],%R[2],%R?[3],%R?[7]
+
+BIGRAM GCO_GCO01:%L[0],%L?[4],%L?[5],%L?[6]/%R[0],%R?[4],%R?[5],%R?[6]
+BIGRAM GCO_GCO02:%L[0],%L?[4],%L?[5],%L?[6]/%R[0],%R?[1],%R?[4],%R?[5],%R?[6]
+BIGRAM GCO_GCO05:%L[0],%L?[1],%L?[4],%L?[5],%L?[6]/%R[0],%R?[4],%R?[5],%R?[6]
+BIGRAM GCO_GCO06:%L[0],%L?[1],%L?[4],%L?[5],%L?[6]/%R[0],%R?[1],%R?[4],%R?[5],%R?[6]
+
+BIGRAM W_W01:%L?[8]/%R?[8]
+
+BIGRAM G_W01:%L[0]/%R?[8]
+BIGRAM G_W02:%L[0],%L?[1]/%R?[8]
+BIGRAM G_W03:%L[0],%L[1],%L?[2]/%R?[8]
+BIGRAM G_W04:%L[0],%L[1],%L[2],%L?[3]/%R?[8]
+
+BIGRAM W_G01:%L?[8]/%R[0]
+BIGRAM W_G02:%L?[8]/%R[0],%R?[1]
+BIGRAM W_G03:%L?[8]/%R[0],%R[1],%R?[2]
+BIGRAM W_G04:%L?[8]/%R[0],%R[1],%R[2],%R?[3]
+
+BIGRAM GW_GW01:%L[0],%L?[8]/%R[0],%R?[8]
+BIGRAM GW_GW02:%L[0],%L?[8]/%R[0],%R?[1],%R?[8]
+BIGRAM GW_GW03:%L[0],%L?[8]/%R[0],%R[1],%R?[2],%R?[8]
+BIGRAM GW_GW04:%L[0],%L?[8]/%R[0],%R[1],%R[2],%R?[3],%R?[8]
+BIGRAM GW_GW05:%L[0],%L?[1],%L?[8]/%R[0],%R?[8]
+BIGRAM GW_GW06:%L[0],%L?[1],%L?[8]/%R[0],%R?[1],%R?[8]
+BIGRAM GW_GW07:%L[0],%L?[1],%L?[8]/%R[0],%R[1],%R?[2],%R?[8]
+BIGRAM GW_GW08:%L[0],%L?[1],%L?[8]/%R[0],%R[1],%R[2],%R?[3],%R?[8]
+BIGRAM GW_GW09:%L[0],%L[1],%L?[2],%L?[8]/%R[0],%R?[8]
+BIGRAM GW_GW10:%L[0],%L[1],%L?[2],%L?[8]/%R[0],%R?[1],%R?[8]
+BIGRAM GW_GW11:%L[0],%L[1],%L?[2],%L?[8]/%R[0],%R[1],%R?[2],%R?[8]
+BIGRAM GW_GW12:%L[0],%L[1],%L?[2],%L?[8]/%R[0],%R[1],%R[2],%R?[3],%R?[8]
+BIGRAM GW_GW13:%L[0],%L[1],%L[2],%L?[3],%L?[8]/%R[0],%R?[8]
+BIGRAM GW_GW14:%L[0],%L[1],%L[2],%L?[3],%L?[8]/%R[0],%R?[1],%R?[8]
+BIGRAM GW_GW15:%L[0],%L[1],%L[2],%L?[3],%L?[8]/%R[0],%R[1],%R?[2],%R?[8]
+BIGRAM GW_GW16:%L[0],%L[1],%L[2],%L?[3],%L?[8]/%R[0],%R[1],%R[2],%R?[3],%R?[8]
+
+BIGRAM GCW_GCW01:%L[0],%L?[4],%L?[5],%L?[8]/%R[0],%R?[4],%R?[5],%R?[8]
+BIGRAM GCW_GCW02:%L[0],%L?[4],%L?[5],%L?[8]/%R[0],%R?[1],%R?[4],%R?[5],%R?[8]
+BIGRAM GCW_GCW05:%L[0],%L?[1],%L?[4],%L?[5],%L?[8]/%R[0],%R?[4],%R?[5],%R?[8]
+BIGRAM GCW_GCW06:%L[0],%L?[1],%L?[4],%L?[5],%L?[8]/%R[0],%R?[1],%R?[4],%R?[5],%R?[8]
+
+BIGRAM OW_OW01:%L?[7],%L?[8]/%R?[7],%R?[8]
+
+BIGRAM GOW_GOW01:%L[0],%L?[7],%L?[8]/%R[0],%R?[7],%R?[8]
+BIGRAM GOW_GOW02:%L[0],%L?[7],%L?[8]/%R[0],%R?[1],%R?[7],%R?[8]
+BIGRAM GOW_GOW03:%L[0],%L?[7],%L?[8]/%R[0],%R[1],%R?[2],%R?[7],%R?[8]
+BIGRAM GOW_GOW04:%L[0],%L?[7],%L?[8]/%R[0],%R[1],%R[2],%R?[3],%R?[7],%R?[8]
+BIGRAM GOW_GOW05:%L[0],%L?[1],%L?[7],%L?[8]/%R[0],%R?[7],%R?[8]
+BIGRAM GOW_GOW06:%L[0],%L?[1],%L?[7],%L?[8]/%R[0],%R?[1],%R?[7],%R?[8]
+BIGRAM GOW_GOW07:%L[0],%L?[1],%L?[7],%L?[8]/%R[0],%R[1],%R?[2],%R?[7],%R?[8]
+BIGRAM GOW_GOW08:%L[0],%L?[1],%L?[7],%L?[8]/%R[0],%R[1],%R[2],%R?[3],%R?[7],%R?[8]
+BIGRAM GOW_GOW09:%L[0],%L[1],%L?[2],%L?[7],%L?[8]/%R[0],%R?[7],%R?[8]
+BIGRAM GOW_GOW10:%L[0],%L[1],%L?[2],%L?[7],%L?[8]/%R[0],%R?[1],%R?[7],%R?[8]
+BIGRAM GOW_GOW11:%L[0],%L[1],%L?[2],%L?[7],%L?[8]/%R[0],%R[1],%R?[2],%R?[7],%R?[8]
+BIGRAM GOW_GOW12:%L[0],%L[1],%L?[2],%L?[7],%L?[8]/%R[0],%R[1],%R[2],%R?[3],%R?[7],%R?[8]
+BIGRAM GOW_GOW13:%L[0],%L[1],%L[2],%L?[3],%L?[7],%L?[8]/%R[0],%R?[7],%R?[8]
+BIGRAM GOW_GOW14:%L[0],%L[1],%L[2],%L?[3],%L?[7],%L?[8]/%R[0],%R?[1],%R?[7],%R?[8]
+BIGRAM GOW_GOW15:%L[0],%L[1],%L[2],%L?[3],%L?[7],%L?[8]/%R[0],%R[1],%R?[2],%R?[7],%R?[8]
+BIGRAM GOW_GOW16:%L[0],%L[1],%L[2],%L?[3],%L?[7],%L?[8]/%R[0],%R[1],%R[2],%R?[3],%R?[7],%R?[8]
+
+BIGRAM CO_COW01:%L?[4],%L?[5],%L?[6]/%R?[4],%R?[5],%R?[6],%R?[8]
+
+BIGRAM COW_C01:%L?[4],%L?[5],%L?[6],%L?[8]/%R?[4],%R?[5]
+
+BIGRAM COW_COW01:%L?[4],%L?[5],%L?[6],%L?[8]/%R?[4],%R?[5],%R?[6],%R?[8]
