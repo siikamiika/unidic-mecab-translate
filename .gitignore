@@ -1,5 +1,11 @@
 *~
 matrix.def
-matrix-original.def
 lex.csv
 lex-original.csv
+Makefile
+char.bin
+config.log
+config.status
+matrix.bin
+sys.dic
+unk.dic

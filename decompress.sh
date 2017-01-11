@@ -1,3 +1,3 @@
 #!/usr/bin/bash
-cat matrix.def-original-* | gunzip -c > matrix-original.def
+cat matrix.def-original-* | gunzip -c > matrix.def
 gunzip -c lex.csv-original.gz > lex-original.csv
