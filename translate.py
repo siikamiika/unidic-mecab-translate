@@ -133,7 +133,7 @@ TRANSLATIONS = {
         '未然形-一般': 'irrealis',
         '未然形-撥音便': 'irrealis|nasal',
         '未然形-補助': 'irrealis',
-        '終止形-ウ音便': 'terminalu',
+        '終止形-ウ音便': 'terminal|u',
         '終止形-一般': 'terminal',
         '終止形-促音便': 'terminal|nasal',
         '終止形-撥音便': 'terminal|nasal',
@@ -204,7 +204,7 @@ TRANSLATIONS = {
         '終助詞': 'final',
         '読点': 'comma',
         '非自立可能': 'non independent?',
-        'ＡＡ': 'ＡＡ'
+        'ＡＡ': 'ascii art'
     },
     'pos3': {
         'サ変可能': 'irregular suru/su?',
@@ -226,7 +226,7 @@ TRANSLATIONS = {
     }
 }
 
-ENTRY_FORMAT = [
+LEX_ENTRY_FORMAT = [
     '0',
     '1',
     '2',
@@ -250,9 +250,57 @@ ENTRY_FORMAT = [
     '19',
 ]
 
-def entry(line):
-    """Split csv line and return a dictionary"""
-    return OrderedDict(zip(ENTRY_FORMAT, line.split(',')))
+ID_ENTRY_FORMAT = [
+    'pos',
+    'pos2',
+    'pos3',
+    'pos4',
+    'inflection_type',
+    'inflection_form',
+    '6',
+    '7',
+    '8',
+]
+
+REWRITE_ENTRY_FORMAT = [
+    'pos',
+    'pos2',
+    'pos3',
+    'pos4',
+    'REST',
+]
+
+UNK_ENTRY_FORMAT = [
+    '0',
+    '1',
+    '2',
+    '3',
+    'pos',
+    'pos2',
+    'pos3',
+    'pos4',
+    '8',
+    '9',
+]
+
+def lex_entry(line):
+    """Split lex.csv line and return a dictionary"""
+    return OrderedDict(zip(LEX_ENTRY_FORMAT, line.split(',')))
+
+def id_entry(line):
+    """1 代名詞,*,*,*,*,*,*,*,和 --> ['1', OrderedDict(...)]"""
+    line = line.split(' ', 1)
+    return line[0], OrderedDict(zip(ID_ENTRY_FORMAT, line[1].split(',')))
+
+def rewrite_entry(line):
+    """助詞,*,*,*,*,*,*,...,*,*,*,*,*,*,*,*,*	$1,$2,$3,$4,$5,$6,$9,$11,$13 -->
+    OrderedDict(pos:助詞,pos2:*,pos3:*,pos4:*,REST:...)"""
+    max_split = len(REWRITE_ENTRY_FORMAT) - 1
+    return OrderedDict(zip(REWRITE_ENTRY_FORMAT, line.split(',', max_split)))
+
+def unk_entry(line):
+    """DEFAULT,5968,5968,3857,補助記号,一般,*,*,*,* --> OrderedDict(...)"""
+    return OrderedDict(zip(UNK_ENTRY_FORMAT, line.split(',')))
 
 def remove_chouon(text):
     """Remove long vowel marks from katakana text"""
@@ -275,12 +323,12 @@ def remove_chouon(text):
         previous = char
     return ''.join(output)
 
-def main():
-    """Read lex-original.csv and write a translated version to lex.csv"""
+def translate_lex():
+    """Read lex.csv.original and write a translated version to lex.csv"""
 
     ichidan_eru = re.compile(r'^下一段')
 
-    lex_original = open('lex-original.csv', encoding='utf-8')
+    lex_original = open('lex.csv.original', encoding='utf-8')
     try:
         os.remove('lex.csv')
     except FileNotFoundError:
@@ -290,7 +338,7 @@ def main():
     potential = False
     for line in lex_original:
         potential = False
-        line = entry(line)
+        line = lex_entry(line)
 
         if (ichidan_eru.match(line['inflection_type'])
                 and line['orth_reading']
@@ -311,6 +359,100 @@ def main():
 
     lex_original.close()
     lex_translated.close()
+
+def translate_id(input_filename, output_filename):
+    """Read left-id.def.original or right-id.def.original
+    and write a translated version to *-id.def"""
+
+    id_original = open(input_filename, encoding='utf-8')
+
+    try:
+        os.remove(output_filename)
+    except FileNotFoundError:
+        pass
+    id_translated = open(output_filename, 'a', encoding='utf-8')
+
+    for line in id_original:
+        number, line = id_entry(line)
+
+        for key in line:
+            try:
+                line[key] = TRANSLATIONS[key][line[key]]
+            except KeyError:
+                pass
+
+        id_translated.write('{} {}'.format(number, ','.join(line.values())))
+
+    id_original.close()
+    id_translated.close()
+
+def translate_rewrite():
+    """Read rewrite.def.original and write a translated version to rewrite.def"""
+
+    rewrite_original = open('rewrite.def.original', encoding='utf-8')
+
+    try:
+        os.remove('rewrite.def')
+    except FileNotFoundError:
+        pass
+    rewrite_translated = open('rewrite.def', 'a', encoding='utf-8')
+
+    translate = False
+    for line in rewrite_original:
+        if line.strip() in ['[left rewrite]', '[right rewrite]']:
+            translate = True
+            rewrite_translated.write(line)
+            continue
+        elif not line.strip():
+            translate = False
+
+        if translate:
+            line = rewrite_entry(line)
+
+            for key in line:
+                try:
+                    line[key] = TRANSLATIONS[key][line[key]]
+                except KeyError:
+                    pass
+
+            rewrite_translated.write(','.join(line.values()))
+        else:
+            rewrite_translated.write(line)
+
+    rewrite_original.close()
+    rewrite_translated.close()
+
+def translate_unk():
+    """Read unk.def.original and write a translated version to unk.def"""
+
+    unk_original = open('unk.def.original', encoding='utf-8')
+
+    try:
+        os.remove('unk.def')
+    except FileNotFoundError:
+        pass
+    unk_translated = open('unk.def', 'a', encoding='utf-8')
+
+    for line in unk_original:
+        line = unk_entry(line)
+        for key in line:
+            try:
+                line[key] = TRANSLATIONS[key][line[key]]
+            except KeyError:
+                pass
+
+        unk_translated.write(','.join(line.values()))
+
+    unk_original.close()
+    unk_translated.close()
+
+def main():
+    """Translate unidic-mecab"""
+    translate_lex()
+    translate_id('left-id.def.original', 'left-id.def')
+    translate_id('right-id.def.original', 'right-id.def')
+    translate_rewrite()
+    translate_unk()
 
 if __name__ == '__main__':
     main()

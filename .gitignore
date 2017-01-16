@@ -1,7 +1,7 @@
 *~
 matrix.def
 lex.csv
-lex-original.csv
+lex.csv.original
 Makefile
 char.bin
 config.log
@@ -9,3 +9,7 @@ config.status
 matrix.bin
 sys.dic
 unk.dic
+left-id.def
+right-id.def
+rewrite.def
+unk.def
