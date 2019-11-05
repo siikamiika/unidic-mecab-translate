@@ -238,11 +238,11 @@ LEX_ENTRY_FORMAT = [
     'inflection_type',
     'inflection_form',
     'lemma_reading',
-    '11',
-    '12',
-    '13',
-    '14',
-    'orth_reading',
+    '11',  # lemma
+    'orth',  # orth
+    'pron',  # pron
+    'orth_base',  #orthBase
+    'pron_base',  # pronBase
     '15',
     '16',
     '17',
@@ -302,13 +302,13 @@ def unk_entry(line):
     """DEFAULT,5968,5968,3857,補助記号,一般,*,*,*,* --> OrderedDict(...)"""
     return OrderedDict(zip(UNK_ENTRY_FORMAT, line.split(',')))
 
-def remove_chouon(text):
-    """Remove long vowel marks from katakana text"""
-    if not text:
+def remove_chouon(furigana, text=''):
+    """Remove long vowel marks from furigana"""
+    if not furigana:
         return ''
     output = []
     previous = ''
-    for char in text:
+    for char in furigana:
         if char == 'ー':
             if previous in 'アカガサザタダナハバパマヤャラワ':
                 output.append('ア')
@@ -321,7 +321,16 @@ def remove_chouon(text):
         else:
             output.append(char)
         previous = char
-    return ''.join(output)
+
+    output = ''.join(output)
+    # check if this is a katakana word where chouon is expected
+    if len(output) == len(text):
+        for output_chr, text_chr in zip(output, text):
+            if text_chr not in (output_chr, 'ー'):
+                break
+        else:
+            output = text
+    return output
 
 def translate_lex():
     """Read lex.csv.original and write a translated version to lex.csv"""
@@ -339,11 +348,17 @@ def translate_lex():
     for line in lex_original:
         potential = False
         line = lex_entry(line)
+        line['pron_base'] = remove_chouon(line['pron_base'], line['orth_base'])
+        line['pron'] = remove_chouon(line['pron'], line['orth'])
 
-        if (ichidan_eru.match(line['inflection_type'])
-                and line['orth_reading']
-                and line['lemma_reading'][-2:]
-                != remove_chouon(line['orth_reading'][-2:])):
+        if (
+                ichidan_eru.match(line['inflection_type'])
+                and line['pron_base']
+                and (
+                    remove_chouon(line['lemma_reading'][-2:])
+                    != remove_chouon(line['pron_base'][-2:])
+                )
+        ):
             line['inflection_type'] = 'potential'
             potential = True
 
